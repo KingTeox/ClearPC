@@ -24,7 +24,7 @@ function DeleteDir(Path) {
           DeleteFile(`${Path}/` + file);
         });
       } else {
-        //console.log(`[Teox] <System> ${err}`);
+        console.log(`[Teox] <System> ${err}`);
       }; 
     } else {
       console.log(`[Teox] <System> Removed Directory: ${Path}`);
