@@ -1,0 +1,12 @@
+{
+  "name": "clearpc",
+  "version": "1.0.0",
+  "description": "Clear temp & recent Files",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js && pause"
+  },
+  "keywords": [ "Clear" ],
+  "author": "Teox",
+  "license": "ISC"
+}
