@@ -1,13 +1,14 @@
 console.log(`[Teox] <System> Started`);
 const fs = require("fs");
-let User = "";
+let User = process.env.USERPROFILE.slice(9);
 
-fs.readdirSync("C:\\Users\\").forEach((file) => {
+/*fs.readdirSync("C:\\Users\\").forEach((file) => {
   if (!["All Users", "Default", "Default User", "desktop.ini", "Public", "Todos os Usuários", "Usuário Padrão"].includes(file) && User === "") {
     User = file;
-    console.log(`[Teox] <System> User Found: ${file}`);
   };
-});
+});*/
+
+console.log(`[Teox] <System> User Found: ${User}`);
 
 const filePathRecent = `C:\\Users\\${User}\\Recent\\`;
 const filePathTemp = `C:\\Users\\${User}\\AppData\\Local\\Temp\\`;
@@ -27,7 +28,7 @@ function DeleteDir(Path) {
         console.log(`[Teox] <System> ${err}`);
       }; 
     } else {
-      console.log(`[Teox] <System> Removed Directory: ${Path}`);
+      console.log(`[Teox] <System> Removed: ${Path}`);
     };
   });
 };
@@ -37,16 +38,16 @@ function DeleteFile(Path) {
     if (err) {
       switch (err.code) {
         case "ENOENT":
-          console.log(`[Teox] <System> Error: File doesn't exist ${Path}`);
+          console.log(`[Teox] <System> File doesn't exist ${Path}`);
           break;
         case "EPERM":
           try {
             DeleteDir(Path);
           } catch (error) {
-            console.log(`[Teox] <System> Error: Permission denied ${Path}`);
+            console.log(`[Teox] <System>  Permission denied ${Path}`);
           }; break;
         case "EBUSY":
-          console.log(`[Teox] <System> Error: File open ${Path}`);
+          console.log(`[Teox] <System> File open ${Path}`);
           break;
         default:
           console.log(`[Teox] <System> ${err}`);
@@ -54,7 +55,7 @@ function DeleteFile(Path) {
       }
       
     } else {
-      console.log(`[Teox] <System> Removed file: ${Path}`);
+      console.log(`[Teox] <System> remove: ${Path}`);
     };
   });
 };
@@ -83,4 +84,4 @@ fs.readdirSync(filePathTemp2).forEach(file => {
   DeleteFile(filePathTemp2 + file);
 });
 
-console.log(`[Teox] <System> Finished Reading Directory's`);
+console.log(`[Teox] <System> Reading Directory's`);
